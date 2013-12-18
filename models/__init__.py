@@ -36,9 +36,9 @@ metadata = DatabaseObject.metadata
 
 
 # Import models
-from models.Permission import Permission
-from models.User import User
-
+# from models.Permission import Permission
+# from models.User import User
+from models.Event import Event
 
 def _create_tables(sqla_engine, sqla_metadata):
     ''' Create all the tables '''
