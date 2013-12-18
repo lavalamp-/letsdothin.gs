@@ -4,7 +4,7 @@
 
 [Server]
 # Web server listen port
-port = 8888
+port = 80
 
 # Debug mode provides stack traces, etc
 debug = True
@@ -23,7 +23,7 @@ file_logs = True
 file_logs_level = debug
 
 # Path to output file for logs (if save_logs is enabled)
-file_logs_filename = app.log
+file_logs_filename = letsdothings.log
 
 [Ssl]
 # Enable/disable SSL server
@@ -60,14 +60,14 @@ x-headers = False
 
 [Database]
 # Supports 'mysql', 'postgresql', or 'sqlite'; defaults to mysql
-dialect = sqlite
+dialect = mysql
 
 # This is the database name we're connecting to
-name = tornadoapp
+name = letsdothings
 
 # These are not used for sqlite
 # Leave blank or set to 'RUNTIME' if you want to prompt for creds when the application starts
 # this keeps sensitive db credentials out of plain-text files, and is recommended for production.
 host = localhost
-user = dbuser
-password = dbpassword
+user = dev_user
+password = dev_password
