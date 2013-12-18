@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-@author: moloch
+@author: moloch, lavlamp
 
     Copyright 2012
 
@@ -215,6 +215,23 @@ class ConfigManager(object):
             raise ValueError("Database dialect not supported")
         self._test_connection(db_conn)
         return db_conn
+
+    ##           ##
+    #  lavalamp-  #
+    ##           ##
+    
+    @property
+    def fb_organization_file(self):
+        ''' The file location for the data file for fb organizations '''
+        ret_path = os.path.abspath(self.config.get('letsdothin.gs', 'fb_log_file'))
+        if not os.path.exists(ret_path):
+            logging.fatal("FB org file configuration mismatch, data file '%s' not found." % ret_path)
+            os._exit(1)
+        return ret_path
+
+    ##           ##
+    #  /lavalamp- #
+    ##           ##
 
     def _postgresql(self):
         ''' 

@@ -71,3 +71,8 @@ name = letsdothings
 host = localhost
 user = dev_user
 password = dev_password
+
+[letsdothin.gs]
+
+# Location of the log file for fb data containing organizations as object roots
+fb_log_file = fb_org_root.json
