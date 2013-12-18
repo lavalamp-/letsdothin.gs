@@ -55,7 +55,6 @@ class Event(DatabaseObject):
     venue_state = Column(Unicode(64), unique=False, nullable=False)
     venue_street = Column(Unicode(64), unique=False, nullable=False)
     venue_zip = Column(Unicode(10), unique=False, nullable=False)
-    name = Column(Unicode(256), unique=False, nullable=False)
     end_time = Column(Date(), unique=False, nullable=True)
 
     # name = Column(Unicode(16), unique=True, nullable=False)
