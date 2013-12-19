@@ -29,8 +29,8 @@ from os import urandom
 from pbkdf2 import PBKDF2
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import synonym, relationship, backref
-from sqlalchemy.types import Unicode, String 
-from models import dbsession, Permission
+from sqlalchemy.types import Unicode, String, BigInteger, Boolean, DateTime, Float 
+from models import dbsession
 from models.BaseModels import DatabaseObject
 
 
@@ -44,9 +44,9 @@ class Event(DatabaseObject):
     owner_name = Column(Unicode(256), unique=False, nullable=True)
     owner_fb_id = Column(BigInteger(), unique=False, nullable=True)
     privacy = Column(Unicode(10), unique=False, nullable=True)
-    start_time = Column(Date(), unique=False, nullable=False)
+    start_time = Column(DateTime(), unique=False, nullable=False)
     timezone = Column(Unicode(64), unique=False, nullable=True)
-    updated_time = Column(Date(), unique=False, nullable=True)
+    updated_time = Column(DateTime(), unique=False, nullable=True)
     venue_city = Column(Unicode(64), unique=False, nullable=False)
     venue_country = Column(Unicode(64), unique=False, nullable=False)
     venue_fb_id = Column(BigInteger(), unique=False, nullable=False)
@@ -55,7 +55,7 @@ class Event(DatabaseObject):
     venue_state = Column(Unicode(64), unique=False, nullable=False)
     venue_street = Column(Unicode(64), unique=False, nullable=False)
     venue_zip = Column(Unicode(10), unique=False, nullable=False)
-    end_time = Column(Date(), unique=False, nullable=True)
+    end_time = Column(DateTime(), unique=False, nullable=True)
 
     # name = Column(Unicode(16), unique=True, nullable=False)
     # _password = Column('password', String(64))

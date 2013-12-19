@@ -22,9 +22,9 @@ import getpass
 
 from libs.ConsoleColors import *
 from libs.ConfigManager import ConfigManager
-from models import dbsession, User, Permission
-from models.User import ADMIN_PERMISSION
+from models import dbsession
 
+'''
 # Fills the database with some startup data.
 config = ConfigManager.instance()
 password = ""
@@ -54,7 +54,6 @@ user.permissions.append(admin_permission)
 dbsession.add(admin_permission)
 dbsession.add(user)
 dbsession.flush()
-
 # Display Details
 if config.bootstrap == 'developement':
     environ = bold + R + "Developement boot strap" + W
@@ -63,3 +62,5 @@ else:
     environ = bold + "Production boot strap" + W
     details = '.'
 print INFO + '%s completed successfully%s' % (environ, details)
+'''
+print INFO + 'Set up properly!'

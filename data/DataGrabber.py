@@ -19,6 +19,7 @@
 
 '''
 
+import datetime
 from models import Event
 from libs.Singleton import Singleton
 from libs.FileHelpers import FileHelper
@@ -45,8 +46,8 @@ class DataGrabber(object):
         c_name = unicode(input_dict['name'])
         c_fb_id = int(input_dict['id'])
         c_location = unicode(input_dict['location'])
-        c_is_date_only = unicode(input_dict['is_date_only']) if 'is_date_only' in input_dict else None
-        if owner in input_dict:
+        c_is_date_only = input_dict['is_date_only'] if 'is_date_only' in input_dict else None
+        if 'owner' in input_dict:
             c_owner_name = unicode(input_dict['owner']['name'])
             c_owner_fb_id = int(input_dict['owner']['id'])
         else:
@@ -64,7 +65,7 @@ class DataGrabber(object):
         c_venue_state = unicode(input_dict['venue']['state'])
         c_venue_street = unicode(input_dict['venue']['street'])
         c_venue_zip = unicode(input_dict['venue']['zip'])
-        c_end_time = get_fb_time(input_dict['end_time']) if 'end_time' in input_dict else None
+        c_end_time = self.get_fb_time(input_dict['end_time']) if 'end_time' in input_dict else None
         new_event = Event(
             name=c_name,
             fb_id=c_fb_id,
@@ -77,7 +78,7 @@ class DataGrabber(object):
             timezone=c_timezone,
             updated_time=c_updated_time,
             venue_city=c_venue_city,
-            venue_country=c_venuy_country,
+            venue_country=c_venue_country,
             venue_fb_id=c_venue_fb_id,
             venue_lat=c_venue_lat,
             venue_long=c_venue_long,

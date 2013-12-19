@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 '''
     Copyright 2012 Root the Box
 
@@ -28,7 +28,9 @@ import argparse
 
 from datetime import datetime
 from libs.ConsoleColors import *
-
+from libs.FileHelpers import FileHelper
+from data.DataGrabber import DataGrabber
+from models import dbsession
 
 __version__ = 'v0.0.1'
 current_time = lambda: str(datetime.now()).split(' ')[1].split('.')[0]
@@ -49,6 +51,18 @@ def create():
     print(INFO+'%s : Bootstrapping the database ...' % current_time())
     import setup.bootstrap
 
+def test():
+    print("This is a test")
+    orgs = FileHelper.get_organizations_from_file()
+    DG = DataGrabber.instance()
+    events = []
+    for cur_org in orgs:
+        for cur_event in cur_org['events']:
+            events.append(DG.get_event_from_fb_dict(cur_event))
+    print("Number of orgs: %s" % len(orgs))
+    print("Number of events created: %s" % len(events))
+    [dbsession.add(event) for event in events]
+    dbsession.flush()
 
 def main(args):
     ''' Call functions in the correct order based on CLI params '''
@@ -63,6 +77,9 @@ def main(args):
     # Start server
     if args.start_server:
         serve()
+    # Do test
+    if args.do_test:
+        test()
 
 
 ### Main
@@ -83,5 +100,10 @@ if __name__ == '__main__':
         action='store_true',
         dest='start_server',
         help="start the server",
+    )
+    parser.add_argument("-t", "--test",
+        action='store_true',
+        dest='do_test',
+        help='Run the test code in app.py'
     )
     main(parser.parse_args())
