@@ -24,9 +24,15 @@ from handlers.BaseHandlers import BaseHandler
 
 class EventHandler(BaseHandler):
 
+    def __init__(self):
+        self.loader = template.Loader("templates/")
+
     def get(self, *args, **kwargs):
-        self.render('public/events.html', events=Event.all(), event_html=self.get_event_html)
+        self.render('public/events.html', events=Event.all(), event_html=self.get_events_row)
 
     def get_event_html(self, input_event):
-        loader = template.Loader("templates/")
-        return loader.load("events/event.html").generate(event=input_event)
+        return self.loader.load("events/event.html").generate(event=input_event)
+
+    def get_events_row(self, input_events):
+        events_html = [self.get_event_html(cur_event) for event in input_events]
+        return self.loader.load("events/event_row.html", events="".join(events_html))
