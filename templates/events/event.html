@@ -1,13 +1,13 @@
 <div class='col-md-4 col-container'>
 	<div id='event_{{ event.fb_id }}' class='div-event'>
 		<h3 class='h3-event-title hover-blue' eventid='{{ event.fb_id }}'>{{ event.name }}</h3>
-		<span class='span-event-time hover-blue'>
+		<span class='span-event-time'>
 			<div class='div-event-row'>
 				<span class="glyphicon glyphicon-time" style='float:left'></span>
-				<span style='float:right'>{{ event.get_time_string() }}</span>
+				<span style='float:right'>{{ event.time_string }}</span>
 			</div>
 		</span>
-		<span class='span-event-location hover-blue'>
+		<span class='span-event-location hover-blue' maps-string='{{ event.maps_search_string }}'>
 			<div class='div-event-row'>
 				<span class="glyphicon glyphicon-map-marker" style='float:left'></span>
 				<span style='float:right'>{{ event.get_venue_name_abbrev(27) }}</span>

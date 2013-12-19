@@ -105,13 +105,22 @@ class Event(DatabaseObject):
         ''' Returns all events for today '''
         return Event.by_datetime(datetime.datetime.now())
 
-    def get_time_string(self):
+    @property
+    def maps_search_string(self):
+        to_return = self.get_venue_name()
+        for cur_val in [self.venue_street, self.venue_city, self.venue_state, self.venue_zip]:
+            if cur_val:
+                to_return += " %s" % cur_val
+        return to_return
+
+    @property
+    def time_string(self):
         to_return = self.start_time.strftime("%I:%M%p")
         if self.end_time is not None:
             to_return += " - %s" % self.end_time.strftime("%I:%M%p")
         return to_return
 
-    def get_venue_name(self):
+    def get_venue_name(self): #TODO turn these into properties
         if self.venue_name is not None:
             return self.venue_name
         else:
@@ -148,10 +157,3 @@ class Event(DatabaseObject):
 
     def __repr__(self):
         return '<Event - name: %s>' % (self.name,)
-
-    # def validate_password(self, attempt):
-    #     ''' Check the password against existing credentials '''
-    #     if self._password is not None:
-    #         return self.password == PBKDF2.crypt(attempt, self.password)
-    #     else:
-    #         return False
