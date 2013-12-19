@@ -33,6 +33,7 @@ import traceback
 from libs.SecurityHelpers import *
 from libs.ConfigManager import ConfigManager
 from libs.Sessions import MemcachedSession
+from tornado import template
 from tornado.web import RequestHandler
 from tornado.websocket import WebSocketHandler
 
@@ -44,6 +45,7 @@ class BaseHandler(RequestHandler):
         ''' Setup sessions, etc '''
         self.session = None
         self.config = ConfigManager.instance()
+        self.loader = template.Loader("templates/")
         session_id = self.get_secure_cookie('session_id')
         if session_id is not None:
             self.session = self._create_session(session_id)
