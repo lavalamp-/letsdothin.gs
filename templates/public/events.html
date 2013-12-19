@@ -2,6 +2,10 @@
 
 {% block title %}Events{% end %}
 
+{% block head %}
+<script src="/static/js/letsdothin.gs.js"></script>
+{% end %}
+
 {% block content %}
 	{% set cur_index = 0 %}
 	{% while cur_index < len(events) %}

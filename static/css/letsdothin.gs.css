@@ -92,4 +92,12 @@ body {
 
 .hover-blue:hover {
 	color:#00FFFF;
+	cursor:pointer;
+}
+
+.div-event-row .event-footer div {
+	padding:5px, 15px, 15px, 15px;
+	width:83.766px;
+	height:42px;
+	float:left;
 }
