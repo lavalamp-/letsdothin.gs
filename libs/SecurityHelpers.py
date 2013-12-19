@@ -20,7 +20,7 @@
 import logging
 import functools
 
-from models.User import User
+#from models.User import User
 
 
 def authenticated(method):
@@ -50,20 +50,20 @@ def restrict_ip_address(method):
     return wrapper
 
 
-def authorized(permission):
-    ''' Checks user's permissions '''
-
-    def func(method):
-
-        @functools.wraps(method)
-        def wrapper(self, *args, **kwargs):
-            if self.session is not None:
-                user = User.by_id(self.session['user_id'])
-                if user is not None and user.has_permission(permission):
-                    return method(self, *args, **kwargs)
-            self.redirect(self.application.settings['forbidden_url'])
-        return wrapper
-    return func
+#def authorized(permission):
+#    ''' Checks user's permissions '''
+#
+#    def func(method):
+#
+#        @functools.wraps(method)
+#        def wrapper(self, *args, **kwargs):
+#            if self.session is not None:
+#                user = User.by_id(self.session['user_id'])
+#                if user is not None and user.has_permission(permission):
+#                    return method(self, *args, **kwargs)
+#            self.redirect(self.application.settings['forbidden_url'])
+#        return wrapper
+#    return func
 
 def restrict_origin(method):
     ''' Check the origin header / prevent CSRF+WebSocket '''

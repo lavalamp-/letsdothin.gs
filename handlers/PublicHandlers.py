@@ -19,7 +19,6 @@
 
 from tornado import template
 from models import Event
-from models.User import ADMIN_PERMISSION
 from handlers.BaseHandlers import BaseHandler
 
 

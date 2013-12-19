@@ -61,7 +61,7 @@ def test():
             events.append(DG.get_event_from_fb_dict(cur_event))
     print("Number of orgs: %s" % len(orgs))
     print("Number of events created: %s" % len(events))
-    [dbsession.add(event) for event in events]
+    [dbsession.add(event) for event in events if event is not None]
     dbsession.flush()
 
 def main(args):

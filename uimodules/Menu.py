@@ -19,17 +19,17 @@
 
 
 from tornado.web import UIModule
-from models import User
-from models.User import ADMIN_PERMISSION
+# from models import User
+# from models.User import ADMIN_PERMISSION
 
 class Menu(UIModule):
 
     def render(self, *args, **kwargs):
         ''' Renders the top menu '''
-        if self.handler.session is not None:
-            user = User.by_id(self.handler.session['user_id'])
-            if user.has_permission(ADMIN_PERMISSION):
-                return self.render_string('menu/admin.html', username=user.name)
-            else:
-                return self.render_string('menu/user.html', username=user.name)
+        # if self.handler.session is not None:
+        #     user = User.by_id(self.handler.session['user_id'])
+        #     if user.has_permission(ADMIN_PERMISSION):
+        #         return self.render_string('menu/admin.html', username=user.name)
+        #     else:
+        #         return self.render_string('menu/user.html', username=user.name)
         return self.render_string('menu/public.html')

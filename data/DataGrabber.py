@@ -43,6 +43,8 @@ class DataGrabber(object):
 
     def get_event_from_fb_dict(self, input_dict):
         ''' Creates an Event instance from an event obtained from Facebook '''
+        if not 'location' in input_dict:
+            return None
         c_name = unicode(input_dict['name'])
         c_fb_id = int(input_dict['id'])
         c_location = unicode(input_dict['location'])
@@ -57,14 +59,27 @@ class DataGrabber(object):
         c_start_time = self.get_fb_time(input_dict['start_time'])
         c_timezone = unicode(input_dict['timezone']) if 'timezone' in input_dict else None
         c_updated_time = self.get_fb_time(input_dict['updated_time']) if 'updated_time' in input_dict else None
-        c_venue_city = unicode(input_dict['venue']['city'])
-        c_venue_country = unicode(input_dict['venue']['country'])
-        c_venue_fb_id = int(input_dict['venue']['id'])
-        c_venue_lat = input_dict['venue']['latitude']
-        c_venue_long = input_dict['venue']['longitude']
-        c_venue_state = unicode(input_dict['venue']['state'])
-        c_venue_street = unicode(input_dict['venue']['street'])
-        c_venue_zip = unicode(input_dict['venue']['zip'])
+        if 'venue' in input_dict:
+            print(input_dict['venue'])
+            c_venue_city = unicode(input_dict['venue']['city']) if 'city' in input_dict['venue'] else None
+            c_venue_country = unicode(input_dict['venue']['country']) if 'country' in input_dict['venue'] else None
+            c_venue_fb_id = int(input_dict['venue']['id']) if 'id' in input_dict['venue'] else None
+            c_venue_lat = input_dict['venue']['latitude'] if 'latitude' in input_dict['venue'] else None
+            c_venue_long = input_dict['venue']['longitude'] if 'longitude' in input_dict['venue'] else None
+            c_venue_state = unicode(input_dict['venue']['state']) if 'state' in input_dict['venue'] else None
+            c_venue_street = unicode(input_dict['venue']['street']) if 'street' in input_dict['venue'] else None
+            c_venue_zip = unicode(input_dict['venue']['zip']) if 'zip' in input_dict['venue'] else None
+            c_venue_name = unicode(input_dict['venue']['name']) if 'name' in input_dict['venue'] else None
+        else:
+            c_venue_city = None
+            c_venue_country = None
+            c_venue_fb_id = None
+            c_venue_lat = None
+            c_venue_long = None
+            c_venue_state = None
+            c_venue_street = None
+            c_venue_zip = None
+            c_venue_name = None
         c_end_time = self.get_fb_time(input_dict['end_time']) if 'end_time' in input_dict else None
         new_event = Event(
             name=c_name,
@@ -85,6 +100,7 @@ class DataGrabber(object):
             venue_state=c_venue_state,
             venue_street=c_venue_street,
             venue_zip=c_venue_zip,
+            venue_name=c_venue_name,
             end_time=c_end_time
         )
         return new_event

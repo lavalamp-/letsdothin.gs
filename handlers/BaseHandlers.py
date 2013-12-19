@@ -29,7 +29,7 @@ import logging
 import pylibmc
 import traceback
 
-from models import User
+#from models import User
 from libs.SecurityHelpers import *
 from libs.ConfigManager import ConfigManager
 from libs.Sessions import MemcachedSession
@@ -49,11 +49,11 @@ class BaseHandler(RequestHandler):
             self.session = self._create_session(session_id)
             self.session.refresh()
 
-    def get_current_user(self):
-        ''' Get current user object from database '''
-        if self.session is not None:
-            return User.by_id(self.session['user_id'])
-        return None
+#    def get_current_user(self):
+#        ''' Get current user object from database '''
+#        if self.session is not None:
+#            return User.by_id(self.session['user_id'])
+#        return None
 
     def start_session(self):
         ''' Starts a new session '''
@@ -181,15 +181,15 @@ class BaseWebSocketHandler(WebSocketHandler):
 
     def get_current_user(self):
         ''' Get current user object from database '''
-        if self.session is not None:
-            try:
-                return User.by_handle(self.session['handle'])
-            except KeyError:
-                logging.exception(
-                    "Malformed session: %r" % self.session
-                )
-            except:
-                logging.exception("Failed call to get_current_user()")
+#        if self.session is not None:
+#            try:
+#                return User.by_handle(self.session['handle'])
+#            except KeyError:
+#                logging.exception(
+#                    "Malformed session: %r" % self.session
+#                )
+#            except:
+#                logging.exception("Failed call to get_current_user()")
         return None
 
     def open(self):

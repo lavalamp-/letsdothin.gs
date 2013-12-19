@@ -30,7 +30,6 @@ from libs.ConfigManager import ConfigManager
 from handlers.PublicHandlers import *
 from handlers.ErrorHandlers import *
 from handlers.AdminHandlers import *
-from handlers.UserHandlers import *
 
 ### Config
 config = ConfigManager.instance()

@@ -4,6 +4,6 @@
 
 {% block content %}
 	{% for cur_event in events %}
-		{{ escape(event_html(cur_event)) }}
+		{% raw event_html(cur_event) %}
 	{% end %}
 {% end %}
