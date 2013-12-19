@@ -29,7 +29,7 @@ import datetime
 
 from os import urandom
 from pbkdf2 import PBKDF2
-from sqlalchemy import Column, ForeignKey
+from sqlalchemy import Column, ForeignKey, cast, and_
 from sqlalchemy.orm import synonym, relationship, backref
 from sqlalchemy.types import Unicode, String, BigInteger, Boolean, DateTime, Float 
 from models import dbsession
@@ -94,9 +94,11 @@ class Event(DatabaseObject):
     @classmethod
     def by_datetime(cls, input_datetime):
         ''' Returns all events for the day depicted by input_datetime '''
+        day = input_datetime.date()
+        next_day = day + datetime.timedelta(days=1)
         return dbsession.query(cls).filter(
-            cls.start_time.date() == input_datetime.date()
-        )
+            and_(cls.start_time >= day, cls.start_time < next_day)
+        ).all()
 
     @classmethod
     def for_today(cls):
