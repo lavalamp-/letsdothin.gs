@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-@author: moloch, lavlamp
+@author: moloch, lavalamp
 
     Copyright 2012
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-@author: lavalamp-
+@author: lavalamp
 
     Copyright 2013
 
