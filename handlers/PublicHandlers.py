@@ -25,7 +25,7 @@ from handlers.BaseHandlers import BaseHandler
 class EventHandler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render('public/events.html', events=Event.all(), event_html=self.get_events_row)
+        self.render('public/events.html', events=Event.for_today(), event_html=self.get_events_row)
 
     def get_event_html(self, input_event):
         return self.loader.load("events/event.html").generate(event=input_event)

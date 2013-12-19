@@ -47,3 +47,6 @@ pip-log.txt
 
 # OSX
 .DS_Store
+
+# Configuration
+*.cfg

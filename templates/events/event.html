@@ -1,5 +1,5 @@
 <div class='col-md-4 col-container'>
-	<div id='event_{{ event.id }}' class='div-event'>
+	<div id='event_{{ event.fb_id }}' class='div-event'>
 		<h3>{{ event.name }}</h3>
 		<span class='span-event-time'>
 			<div class='div-event-row'>
@@ -20,16 +20,16 @@
 			</div>
 		</span>
 		<div class='div-event-row event-footer'>
-			<div id='upvote-{{ event.id }}' class='col-md-3 upvote'>
+			<div id='upvote-{{ event.fb_id }}' class='col-md-3 upvote'>
 				<span class="glyphicon glyphicon-thumbs-up"></span>	
 			</div>
-			<div id='downvote-{{ event.id }}' class='col-md-3 downvote'>
+			<div id='downvote-{{ event.fb_id }}' class='col-md-3 downvote'>
 				<span class="glyphicon glyphicon-thumbs-down"></span>	
 			</div>
-			<div id='info-{{ event.id }}' class='col-md-3 event-info'>
+			<div id='info-{{ event.fb_id }}' class='col-md-3 event-info'>
 				<span class="glyphicon glyphicon-info-sign"></span>	
 			</div>
-			<div id='promote-{{ event.id }}' class='col-md-3 event-promote'>
+			<div id='promote-{{ event.fb_id }}' class='col-md-3 event-promote'>
 				<span class="glyphicon glyphicon-upload"></span>	
 			</div>
 		</div>

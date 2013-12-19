@@ -25,6 +25,7 @@ indiviudal event
 
 import logging
 import time
+import datetime
 
 from os import urandom
 from pbkdf2 import PBKDF2
@@ -89,6 +90,18 @@ class Event(DatabaseObject):
         return dbsession.query(cls).filter_by(
             name=unicode(event_name)
         ).first()
+
+    @classmethod
+    def by_datetime(cls, input_datetime):
+        ''' Returns all events for the day depicted by input_datetime '''
+        return dbsession.query(cls).filter(
+            cls.start_time.date() == input_datetime.date()
+        )
+
+    @classmethod
+    def for_today(cls):
+        ''' Returns all events for today '''
+        return Event.by_datetime(datetime.datetime.now())
 
     def get_time_string(self):
         to_return = self.start_time.strftime("%I:%M%p")

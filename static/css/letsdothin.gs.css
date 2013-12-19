@@ -24,6 +24,7 @@
 	margin-right:15px;
 	font-size:27px;
 	height:170px;
+	overflow:hidden;
 }
 
 body {
@@ -66,14 +67,14 @@ body {
 	margin-top:0px;
 }
 
-.div-event .div-event-row:first-of-type {
+.div-event .span-event-time .div-event-row {
 	margin-top:10px;
 	height:30px;
 	padding-top:10px;
 	border-top:1px solid white;
 }
 
-.div-event .div-event-row:last-of-type {
+.div-event .span-event-location .div-event-row:last-of-type {
 	height:30px;
 	padding-bottom:10px;
 	border-bottom:1px solid white;
