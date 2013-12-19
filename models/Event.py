@@ -24,6 +24,7 @@ indiviudal event
 
 
 import logging
+import time
 
 from os import urandom
 from pbkdf2 import PBKDF2
@@ -90,13 +91,34 @@ class Event(DatabaseObject):
         ).first()
 
     def get_time_string(self):
-        return "10:00PM - 4:00AM"
+        to_return = self.start_time.strftime("%I:%M%p")
+        if self.end_time is not None:
+            to_return += " - %s" % self.end_time.strftime("%I:%M%p")
+        return to_return
+
+    def get_venue_name(self):
+        if self.venue_name is not None:
+            return self.venue_name
+        else:
+            return self.location
 
     def get_address_first_line(self):
-        return "1150 Crescent Ave NE"
+        if self.venue_street is not None:
+            return self.venue_street
+        else:
+            return "Not available"
 
     def get_address_second_line(self):
-        return "Atlanta, GA 30309"
+        if self.venue_street is not None:
+            return "%s, %s %s" % (self.venue_city, self.venue_state, self.venue_zip)
+        else:
+            return ""
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return '<Event - name: %s>' % (self.name,)
 
     # def validate_password(self, attempt):
     #     ''' Check the password against existing credentials '''
@@ -104,9 +126,3 @@ class Event(DatabaseObject):
     #         return self.password == PBKDF2.crypt(attempt, self.password)
     #     else:
     #         return False
-
-    # def __str__(self):
-    #     return self.name
-
-    # def __repr__(self):
-    #     return '<User - name: %s>' % (self.name,)

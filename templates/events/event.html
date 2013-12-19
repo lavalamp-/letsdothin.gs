@@ -1,31 +1,35 @@
 <div class='col-md-4 col-container'>
-	<div class='div-event'>
+	<div id='event_{{ event.id }}' class='div-event'>
 		<h3>{{ event.name }}</h3>
-		<div class='div-event-row'>
-			<span class="glyphicon glyphicon-time" style='float:left'></span>
-			<span style='float:right'>{{ event.get_time_string() }}</span>
-		</div>
-		<div class='div-event-row'>
-			<span class="glyphicon glyphicon-map-marker" style='float:left'></span>
-			<span style='float:right'>{{ event.location }}</span>
-		</div>
-		<div class='div-event-row no-top-margin'>
-			<span style='float:right'>{{ event.get_address_first_line() }}</span>
-		</div>
-		<div class='div-event-row no-top-margin'>
-			<span style='float:right'>{{ event.get_address_second_line() }}</span>
-		</div>
+		<span class='span-event-time'>
+			<div class='div-event-row'>
+				<span class="glyphicon glyphicon-time" style='float:left'></span>
+				<span style='float:right'>{{ event.get_time_string() }}</span>
+			</div>
+		</span>
+		<span class='span-event-location'>
+			<div class='div-event-row'>
+				<span class="glyphicon glyphicon-map-marker" style='float:left'></span>
+				<span style='float:right'>{{ event.get_venue_name() }}</span>
+			</div>
+			<div class='div-event-row no-top-margin'>
+				<span style='float:right'>{{ event.get_address_first_line() }}</span>
+			</div>
+			<div class='div-event-row no-top-margin'>
+				<span style='float:right'>{{ event.get_address_second_line() }}</span>
+			</div>
+		</span>
 		<div class='div-event-row event-footer'>
-			<div class='col-md-3'>
+			<div id='upvote-{{ event.id }}' class='col-md-3 upvote'>
 				<span class="glyphicon glyphicon-thumbs-up"></span>	
 			</div>
-			<div class='col-md-3'>
+			<div id='downvote-{{ event.id }}' class='col-md-3 downvote'>
 				<span class="glyphicon glyphicon-thumbs-down"></span>	
 			</div>
-			<div class='col-md-3'>
+			<div id='info-{{ event.id }}' class='col-md-3 event-info'>
 				<span class="glyphicon glyphicon-info-sign"></span>	
 			</div>
-			<div class='col-md-3'>
+			<div id='promote-{{ event.id }}' class='col-md-3 event-promote'>
 				<span class="glyphicon glyphicon-upload"></span>	
 			</div>
 		</div>
