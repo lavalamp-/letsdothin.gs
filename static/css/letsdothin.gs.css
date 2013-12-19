@@ -58,11 +58,6 @@ body {
 	margin-right:0;
 }
 
-.event-footer div {
-	padding-top:5px;
-	padding-bottom:15px;
-}
-
 .no-top-margin {
 	margin-top:0px;
 }
@@ -95,9 +90,10 @@ body {
 	cursor:pointer;
 }
 
-.div-event-row .event-footer div {
+.event-footer div {
 	padding:5px, 15px, 15px, 15px;
 	width:83.766px;
 	height:42px;
 	float:left;
+	padding-top:5px;
 }
