@@ -17,43 +17,17 @@
     limitations under the License.
 '''
 
-from models import User
+from tornado import template
+from models import Event
 from models.User import ADMIN_PERMISSION
 from handlers.BaseHandlers import BaseHandler
 
 
-class LoginHandler(BaseHandler):
+class EventHandler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        if self.session is not None:
-            self.redirect('/user')
-        else:
-            self.render('public/login.html', errors=None)
+        self.render('public/events.html', events=Event.all(), event_html=self.get_event_html)
 
-    def post(self, *args, **kwargs):
-        user = User.by_name(self.get_argument('username', ''))
-        password = self.get_argument('password', '')
-        if user is not None:
-            if user.validate_password(password):
-                self.login_success(user)
-                self.redirect('/user')
-            else:
-                self._auth_failure()
-        else:
-            # Prevent user enumeration via timing attack
-            User._hash_password(password)
-            self.login_failure()
-
-    def login_failure(self):
-        self.render('public/login.html', 
-            errors=["Invalid username and/or password."])
-
-    def login_success(self, user):
-        self.start_session()
-        self.session['user_id'] = user.id
-        if user.has_permission(ADMIN_PERMISSION):
-            self.session['menu'] = 'admin'
-        else:
-            self.session['menu'] = 'user'
-        self.session['username'] = user.name
-        self.session.save()
+    def get_event_html(self, input_event):
+        loader = template.Loader("templates/")
+        return loader.load("events/event.html").generate(event=input_event)

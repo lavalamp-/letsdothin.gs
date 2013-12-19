@@ -88,6 +88,15 @@ class Event(DatabaseObject):
             name=unicode(event_name)
         ).first()
 
+    def get_time_string(self):
+        return "10:00PM - 4:00AM"
+
+    def get_address_first_line(self):
+        return "1150 Crescent Ave NE"
+
+    def get_address_second_line(self):
+        return "Atlanta, GA 30309"
+
     # def validate_password(self, attempt):
     #     ''' Check the password against existing credentials '''
     #     if self._password is not None:

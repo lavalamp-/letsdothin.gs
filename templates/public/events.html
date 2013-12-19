@@ -1,0 +1,9 @@
+{% extends "../main.html" %}
+
+{% block title %}Events{% end %}
+
+{% block content %}
+	{% for cur_event in events %}
+		{{ escape(event_html(cur_event)) }}
+	{% end %}
+{% end %}

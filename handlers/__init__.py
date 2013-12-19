@@ -43,7 +43,7 @@ app = Application([
         StaticFileHandler, {'path': 'static/'}),
 
     # User Handlers -
-    (r'/user', UserHomeHandler),
+    # (r'/user', UserHomeHandler),
 
     # Admin Handlers - 
 
@@ -51,8 +51,11 @@ app = Application([
     (r'/403', ForbiddenHandler),
 
     # Public Handlers - 
-    (r'/login', LoginHandler),
-    (r'/', LoginHandler),
+    # (r'/login', LoginHandler),
+
+    # Event Handlers - 
+    (r'/', EventHandler),
+    (r'/events', EventHandler),
 
     # Catch all 404 page
     (r'(.*)', NotFoundHandler),
