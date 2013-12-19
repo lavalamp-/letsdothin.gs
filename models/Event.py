@@ -117,11 +117,25 @@ class Event(DatabaseObject):
         else:
             return self.location
 
+    def get_venue_name_abbrev(self, input_length):
+        v_name = self.get_venue_name()
+        if len(v_name) > input_length:
+            return v_name[:input_length-3] + "..."
+        else:
+            return v_name
+
     def get_address_first_line(self):
         if self.venue_street is not None:
             return self.venue_street
         else:
             return "Not available"
+
+    def get_address_first_line_abbrev(self, input_length):
+        f_line = self.get_address_first_line()
+        if len(f_line) > input_length:
+            return f_line[:input_length-3] + "..."
+        else:
+            return f_line
 
     def get_address_second_line(self):
         if self.venue_street is not None:

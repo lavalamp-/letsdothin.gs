@@ -89,3 +89,7 @@ body {
 .glyph-container {
 	clear:both;
 }
+
+.hover-blue:hover {
+	color:#00FFFF;
+}
