@@ -8,8 +8,7 @@
 	width:auto;
 	height:345px;
 	background-color:#ff6600;
-	margin-top:30px;
-	margin-bottom:30px;
+	margin-bottom:60px;
 	margin-left:auto;
 	margin-right:auto;
 	max-width:253.328px;
@@ -33,7 +32,6 @@ body {
 
 .container-additives {
 	max-width:940px;
-	padding-top:25px;
 }
 
 .div-event-row {
@@ -96,4 +94,13 @@ body {
 	height:42px;
 	float:left;
 	padding-top:5px;
+}
+
+body {
+	padding-top:15px;
+}
+
+ul.nav a:hover { 
+	color: #ff6600 !important; 
+	background-color:#FFFFFF;
 }

@@ -18,6 +18,7 @@
 '''
 
 from tornado import template
+import datetime
 from models import Event
 from handlers.BaseHandlers import BaseHandler
 
@@ -25,7 +26,23 @@ from handlers.BaseHandlers import BaseHandler
 class EventHandler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render('public/events.html', events=Event.for_today(), event_html=self.get_events_row)
+        if 'day' in kwargs:
+            try:
+                event_day = datetime.datetime.strptime(kwargs['day'], "%y-%m-%d")
+                self.render('public/events.html', events=Event.by_datetime(event_day), event_html=self.get_events_row)
+            except ValueError:
+                self.render('errors/404.html')
+        elif 'day_word' in kwargs:
+            if kwargs['day_word'] == 'today':
+                self.render('public/events.html', events=Event.for_today(), event_html=self.get_events_row)
+            elif kwargs['day_word'] == 'tomorrow':
+                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now() + datetime.timedelta(days=1)), event_html=self.get_events_row)
+            elif kwargs['day_word'] == 'dat':
+                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now() + datetime.timedelta(days=2)), event_html=self.get_events_row)
+            else:
+                self.render('errors/404.html')
+        else:
+            self.render('public/events.html', events=Event.for_today(), event_html=self.get_events_row)
 
     def get_event_html(self, input_event):
         return self.loader.load("events/event.html").generate(event=input_event)

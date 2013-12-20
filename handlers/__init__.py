@@ -55,6 +55,8 @@ app = Application([
     # Event Handlers - 
     (r'/', EventHandler),
     (r'/events', EventHandler),
+    (r'/events/day/(?P<day_word>today|tomorrow|dat)/', EventHandler),
+    (r'/events/day/(?P<day>.*?)/', EventHandler),
 
     # Catch all 404 page
     (r'(.*)', NotFoundHandler),
