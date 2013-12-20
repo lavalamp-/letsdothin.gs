@@ -34,6 +34,7 @@ from sqlalchemy.orm import synonym, relationship, backref
 from sqlalchemy.types import Unicode, String, BigInteger, Boolean, DateTime, Float 
 from models import dbsession
 from models.BaseModels import DatabaseObject
+from pytz import timezone
 
 
 class Event(DatabaseObject):
@@ -103,7 +104,7 @@ class Event(DatabaseObject):
     @classmethod
     def for_today(cls):
         ''' Returns all events for today '''
-        return Event.by_datetime(datetime.datetime.now())
+        return Event.by_datetime(datetime.datetime.now(timezone("US/Eastern")))
 
     @property
     def maps_search_string(self):

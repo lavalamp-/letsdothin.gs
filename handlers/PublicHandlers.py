@@ -21,6 +21,7 @@ from tornado import template
 import datetime
 from models import Event
 from handlers.BaseHandlers import BaseHandler
+from pytz import timezone
 
 
 class EventHandler(BaseHandler):
@@ -36,9 +37,9 @@ class EventHandler(BaseHandler):
             if kwargs['day_word'] == 'today':
                 self.render('public/events.html', events=Event.for_today(), event_html=self.get_events_row)
             elif kwargs['day_word'] == 'tomorrow':
-                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now() + datetime.timedelta(days=1)), event_html=self.get_events_row)
+                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now(timezone("US/Eastern")) + datetime.timedelta(days=1)), event_html=self.get_events_row)
             elif kwargs['day_word'] == 'dat':
-                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now() + datetime.timedelta(days=2)), event_html=self.get_events_row)
+                self.render('public/events.html', events=Event.by_datetime(datetime.datetime.now(timezone("US/Eastern")) + datetime.timedelta(days=2)), event_html=self.get_events_row)
             else:
                 self.render('errors/404.html')
         else:

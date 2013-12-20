@@ -18,3 +18,4 @@ pip install --upgrade tornado
 pip install --upgrade pbkdf2
 pip install --upgrade sqlalchemy
 pip install --upgrade pylibmc
+pip install --upgrade pytz
